@@ -9,8 +9,7 @@
         },
         "extensions": [
           "tonybaloney.vscode-pets",
-          "mechatroner.rainbow-csv",
-          "Tzanou.tamagotchi"
+          "mechatroner.rainbow-csv"
         ]
       }
     }

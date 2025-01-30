@@ -9,7 +9,8 @@
         },
         "extensions": [
           "tonybaloney.vscode-pets",
-          "mechatroner.rainbow-csv"
+          "mechatroner.rainbow-csv",
+          "pixl-garden.BongoCat"
         ]
       }
     }

@@ -1,0 +1,14 @@
+{
+  "name": "Christian Espioza Celis",
+  "image": "mcr.microsoft.com/devcontainers/python",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "workbench.colorTheme": "Monokai"
+      },
+      "extensions": [
+        "tonybaloney.vscode-pets"
+      ]
+    }
+  }
+}

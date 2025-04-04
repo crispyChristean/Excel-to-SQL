@@ -5,10 +5,12 @@
 import pandas as pandas
 import sys
 import glob 
-
+#Glob simply means global.
 
 accumulative_frame = pandas.DataFrame()
 
+#Function checks for the arguments given in the terminal, first arg. must be the program name,second the destination
+#and the third being the directory the program is under. 
 def checking_args():
 
     if len(sys.argv) > 3:
@@ -23,25 +25,17 @@ def checking_args():
 #sys.argv[2] is the file path containing the excel file(s)
 #This function extracts all the xlsx files from the directory/folder.
 def extracting_excel():
+
+    #Checks the last argument in the terminal statement, gets the directory name and finds all xlsx files.
+    #for file in glob.iglob(f'{sys.argv[2]}**/*.xlsx', recursive=True):
+        #print(file)
+
     for file in glob.iglob(f'{sys.argv[2]}**/*.xlsx', recursive=True):
         print(file)
-
-    selected_files = glob.iglob(f'{sys.argv[2]}**/*.xlsx', recursive=True)
+        temp_frame = pandas.read_excel(file)
+        accumulative_frame = pandas.concat([temp_frame])
+    print('passes this section')
+    accumulative_frame.to_csv("all_info_two")
     
-    organize_data(selected_files)
-
-
-def organize_data(given):
-    
-
-    for iteration in given:
-        #Create a temporary frame that reads from one xlsx file.
-        temp_frame = pandas.read_excel(iteration)
-        pandas.concat([temp_frame, accumulative_frame])
-        temp_frame = pandas.DataFrame()
-        
-    for i in accumulative_frame:
-        print(i)
-
 checking_args()
 extracting_excel()

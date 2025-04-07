@@ -1,7 +1,7 @@
 #PLEASE READ BEFORE RUNNING#
 #Be sure to provide three arguments when calling from the terminal
 #This will be the name of the program ("py programName"), the file destination, and the folder/directory to use
-
+#python testing_newModel.py all_info_three filesystem/machine1-data/week1
 import pandas as pandas
 import sys
 import glob 
@@ -27,15 +27,24 @@ def checking_args():
 def extracting_excel():
 
     #Checks the last argument in the terminal statement, gets the directory name and finds all xlsx files.
-    #for file in glob.iglob(f'{sys.argv[2]}**/*.xlsx', recursive=True):
-        #print(file)
-
     for file in glob.iglob(f'{sys.argv[2]}**/*.xlsx', recursive=True):
-        print(file)
-        temp_frame = pandas.read_excel(file)
-        accumulative_frame = pandas.concat([temp_frame])
+        #Create an instance from the ExcelFile class to check for multiple sheets
+        excel = pandas.ExcelFile(file)
+        #A variable that associates itself with the number of sheets within an excel file.
+        sheet_names = excel.sheet_names
+
+        if len(sheet_names) > 1:
+            for eachSheet in sheet_names:
+                temp_frame = pandas.read_excel(eachSheet)
+                print(temp_frame)
+                accumulative_frame = pandas.concat([accumulative_frame, temp_frame])
+        else:
+            temp_frame = pandas.read_excel(file)
+            print(temp_frame)
+            accumulative_frame = pandas.concat([accumulative_frame, temp_frame])
+            print('Running Through This')
     print('passes this section')
-    accumulative_frame.to_csv("all_info_two")
+    accumulative_frame.to_csv("all_info_three")
     
 checking_args()
 extracting_excel()

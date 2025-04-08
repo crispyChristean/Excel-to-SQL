@@ -19,18 +19,24 @@ def checking_args():
         sys.exit(1)
     else:
         print("Perfect")
+
+
 #Function extracts the excel files to then insert into a csv file.
 def extracting_excel():
     #Create a dataframe that will hold all dataframes extracted in the directory.
     accumulative_frame = pandas.DataFrame()
     #Variable to associate the file path
     dir = sys.argv[2] 
-    #Show the files located within the directory. root_dir is where i is iterating through. 
+    #Show the files located within the directory. root_dir is where i is iterating through to check xlsx files. 
     for i in glob.iglob('**/*.xlsx', root_dir=dir, recursive=True):
         path = dir + i
         print("File:")
         print(path)
+        #(path) itself is the file path given in the system arguments combined with the name of the excel file.
+        #Think of it as "file_path/current_xlsx_file"
+
     #Enter a loop within the directory selected
+    print("The above Statements show all Excel Files Detected\n")
     for file in glob.iglob('**/*.xlsx', root_dir=dir, recursive=True):
         path = dir + file
         print("This is a File:")
@@ -56,6 +62,9 @@ def extracting_excel():
                 print("Is Not a dictionary")
                 accumulative_frame = pandas.concat([accumulative_frame, temp_frame])
 
+    accumulative_frame.sort_values(by='Date', ascending=True, ignore_index=True)
+    accumulative_frame.sort_values(by='Time', ascending=True, ignore_index=True)
+    #organizing_dataFrame(accumulative_frame)
     #Once we have gone through all XLSX files, Integrate the accumulative frame into the desired CSV file. 
     print('All Sheets have passed the dataframe integration, inserting into csv file...')
     accumulative_frame.to_csv(sys.argv[1])

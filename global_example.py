@@ -103,9 +103,7 @@ def testing_sys():
  
  
  
- 
- 
- 
+  
  
  
  #sys.arg is a command line argument is treated like an array and is interacted with similar to an array 

@@ -7,7 +7,7 @@
 import pandas as pandas
 import sys
 import glob 
-
+import sqlite3
 #Function checks terminal strings, if not correct, the program will not run
 def checking_args():
 
@@ -74,6 +74,9 @@ checking_args()
 #If passes, then extract the files from the given path
 extracting_excel()
 print("All Done! Files have been inserted to the given csv file or file name!")
+
+
+
 
 
 #__NOTES__

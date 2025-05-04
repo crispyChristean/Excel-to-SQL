@@ -1,3 +1,41 @@
+
+#The code built for the final is located at line 110!
+
+#Create a database file name
+
+#Create a connection using sqlite3
+
+#Use the built in pandas to write your dataframe to the obect
+
+#Close the connection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #PLEASE READ BEFORE RUNNING#
 #Be sure to provide three arguments when calling from the terminal
 #This will be the name of the program ("py programName"), the file destination, and the folder/directory to use

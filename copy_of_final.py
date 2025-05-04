@@ -1,16 +1,16 @@
 #PLEASE READ BEFORE RUNNING#
 #Be sure to provide three arguments when calling from the terminal
 #This will be the name of the program ("py programName"), the file destination, and the folder/directory to use
-#python new_markII.py all_info filesystem/machine1-data/
-
-#Import all neccassary Modules
+#python copy_of_final.py all_info_three filesystem
+#python copy_of_final.py all_info_three filesystem/machine1-data
+# Import all neccassary Modules
 import pandas as pandas
 import sys
 import glob 
 
 #Function checks terminal strings, if not correct, the program will not run
 def checking_args():
-
+    
     if len(sys.argv) > 3:
         print("Too Many Arguments! The First is the program name, second the destination file, and third the folder name!")
         sys.exit(1)
@@ -27,6 +27,7 @@ def extracting_excel():
     accumulative_frame = pandas.DataFrame()
     #Variable to associate the file path
     dir = sys.argv[2] 
+    destination = sys.argv[1]
     #Show the files located within the directory. root_dir is where i is iterating through to check xlsx files. 
     for i in glob.iglob('**/*.xlsx', root_dir=dir, recursive=True):
         path = dir + i
@@ -38,14 +39,14 @@ def extracting_excel():
     #Enter a loop within the directory selected
     print("The above Statements show all Excel Files Detected\n")
     for file in glob.iglob('**/*.xlsx', root_dir=dir, recursive=True):
-        path = dir + file
+        path = dir + '/' + file
         print("This is a File:")
         print(path)
         #Create a dataframe or a dictionary that contains multiple dataframes
         temp_frame = pandas.read_excel(path, sheet_name=None)
         #Create a boolean to check if temp_frame is a dictionary.
         #If true then...
-        if  isinstance(temp_frame, dict) == True:
+        if  isinstance(temp_frame, dict):
                 print('Is A Dictionary')
                 #When iterating through a dictionary, it'll go through the keys
                 for key in temp_frame:
@@ -66,7 +67,7 @@ def extracting_excel():
     #organizing_dataFrame(accumulative_frame)
     #Once we have gone through all XLSX files, Integrate the accumulative frame into the desired CSV file. 
     print('All Sheets have passed the dataframe integration, inserting into csv file...')
-    accumulative_frame.to_csv(sys.argv[1])
+    accumulative_frame.to_csv(destination)
 
 #   **PROGRAM BEGINS HERE**
 #First check the terminal arguments
